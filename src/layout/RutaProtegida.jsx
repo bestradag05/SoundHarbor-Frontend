@@ -7,6 +7,7 @@ import axios from 'axios';
 
 const RutaProtegida = () => {
 
+  console.log("ingreso a ruta protegida");
   const { auth, cargando } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
