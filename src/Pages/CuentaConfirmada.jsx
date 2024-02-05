@@ -20,7 +20,7 @@ const CuentaConfirmada = () => {
 
             try {
                 // Confirmamos la cuenta al momento que se renderiza el componente
-                const { data } = await axios(`${import.meta.env.VITE_BACKEND_URL}usuarios/confirmar/${token}`);
+                const { data } = await axios(`${import.meta.env.VITE_BACKEND_URL}/usuarios/confirmar/${token}`);
                 // Si la cuenta esta confirmada se muestra un link para iniciar secion
                 setCuentaConfirmada(true);
                 setAlerta({

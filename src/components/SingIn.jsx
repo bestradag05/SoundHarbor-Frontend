@@ -43,7 +43,7 @@ const SingIn = () => {
 
         try {
             // Logeamos nuestro usuario y si este existe se devuelve el usuario logeado
-            const { data } = await axios.post(`${import.meta.env.VITE_BACKEND_URL}usuarios/login`, user, {
+            const { data } = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/usuarios/login`, user, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

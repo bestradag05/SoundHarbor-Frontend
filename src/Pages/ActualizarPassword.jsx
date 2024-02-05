@@ -14,7 +14,7 @@ const ActualizarPassword = () => {
   const { token } = params;
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}usuarios/recuperar-password/${token}`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/usuarios/recuperar-password/${token}`)
       .then((respuesta) => {
         if (!respuesta.ok) {
           return respuesta.json().then((respuestaServidor) => {
