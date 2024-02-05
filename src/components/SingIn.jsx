@@ -58,7 +58,7 @@ const SingIn = () => {
             //el token
             const authURL = new URL(import.meta.env.VITE_AUTH_ENDPOINT);
             authURL.searchParams.append('client_id', import.meta.env.VITE_CLIENT_ID);
-            authURL.searchParams.append('redirect_uri', import.meta.env.VITE_REDIRECT_URI);
+            authURL.searchParams.append('redirect_uri', `${window.location.origin}/admin`);
             authURL.searchParams.append('response_type', import.meta.env.VITE_RESPONSE_TYPE);
             authURL.searchParams.append('scope', 'user-read-private user-read-email streaming user-read-playback-state user-modify-playback-state  playlist-read-private user-library-read');
 
