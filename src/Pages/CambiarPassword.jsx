@@ -30,7 +30,7 @@ const CambiarPassword = () => {
 
     setAlerta({});
 
-    fetch("http://localhost:3000/usuarios/olvidepassword", {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/usuarios/olvidepassword`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -14,7 +14,7 @@ const ActualizarPassword = () => {
   const { token } = params;
 
   useEffect(() => {
-    fetch(`http://localhost:3000/usuarios/recuperar-password/${token}`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/usuarios/recuperar-password/${token}`)
       .then((respuesta) => {
         if (!respuesta.ok) {
           return respuesta.json().then((respuestaServidor) => {
@@ -91,8 +91,8 @@ const ActualizarPassword = () => {
       })
       .catch(error => {
         setAlerta({
-            msg: error.message,
-            error: true
+          msg: error.message,
+          error: true
         })
       })
   };
@@ -150,9 +150,9 @@ const ActualizarPassword = () => {
                   Actualizar Password
                 </button>
                 {passwordModificado &&
-                (
+                  (
                     <p><Link to="/" className="text-white font-light text-sm subrayado">Iniciar Sesion</Link></p>
-                )}
+                  )}
               </div>
             </form>
           )}
