@@ -7,10 +7,10 @@ import Track from '../components/Track';
 import Spinner from '../components/Spinner';
 import Search from '../components/Search';
 import Alert from '../components/Alert';
+import { useLocation } from 'react-router-dom';
 
 const Dashboard = () => {
 
-  const { spotifyToken } = useAuth();
   const [tracks, setTracks] = useState([]);
   const [cargando, setCargando] = useState(false);
   const [playPreview, setPlayPreview] = useState("");
@@ -20,10 +20,49 @@ const Dashboard = () => {
 
 
   const trackRef = useRef(null);
-
+  const location = useLocation();
+  const { spotifyToken, setSpotifyToken } = useAuth();
+  const [spotifyCode, setSpotifyCode] = useState(location.state.code);
 
 
   useEffect(() => {
+
+    const tokenSpotify = localStorage.getItem('spotifyToken');
+
+
+    const getToken = async () => {
+      try {
+        const data = new URLSearchParams();
+        data.append('code', spotifyCode);
+        data.append('redirect_uri', `${import.meta.env.VITE_REDIRECT_URI}`);
+        data.append('grant_type', 'authorization_code');
+
+
+
+        if (!tokenSpotify) {
+
+          const respuesta = await axios.post('https://accounts.spotify.com/api/token', data, {
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': 'Basic ' + btoa(`${import.meta.env.VITE_CLIENT_ID}:${import.meta.env.VITE_CLIENT_SECRET}`)
+            }
+          });
+          setSpotifyToken(respuesta.data.access_token);
+          localStorage.setItem('spotifyToken', respuesta.data.access_token);
+
+
+        }
+
+
+
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getToken();
+
+
 
     const getTracks = async () => {
       try {
@@ -61,6 +100,8 @@ const Dashboard = () => {
     }
 
     getTracks();
+
+
 
 
   }, [spotifyToken])

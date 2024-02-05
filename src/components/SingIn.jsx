@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import useAuth from '../hooks/useAuth';
 import Alert from './Alert';
 import axios from 'axios';
@@ -10,9 +10,31 @@ const SingIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { setAuth } = useAuth();
+    const [params, setParams] = useState(null);
+
+    const location = useLocation();
+    const navigate = useNavigate();
 
 
     const [alerta, setAlerta] = useState({});
+
+    const urlParams = new URLSearchParams(location.search);
+
+
+    useEffect(() => {
+        if (urlParams.size > 0) {
+            console.log("parametros");
+            navigate('/admin', { state: { code: urlParams.get("code") } });
+        } else {
+            console.log("sin parametros");
+        }
+
+        //Si es que no acepta la autorizacion se redirecciona al login
+
+
+
+
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
