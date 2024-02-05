@@ -11,129 +11,127 @@ import { useLocation } from 'react-router-dom';
 
 const Dashboard = () => {
 
-  /*   const [tracks, setTracks] = useState([]);
-    const [cargando, setCargando] = useState(false);
-    const [playPreview, setPlayPreview] = useState("");
-    const [curretPreview, setCurrentPreview] = useState(null);
-    const [showPlayer, setShowPlayer] = useState(false);
-    const [alerta, setAlerta] = useState({});
-  
-  
-    const trackRef = useRef(null);
-    const location = useLocation();
-    const { spotifyToken, setSpotifyToken } = useAuth();
-    const [spotifyCode, setSpotifyCode] = useState(location.state.code);
-  
-  
-    useEffect(() => {
-  
-      const tokenSpotify = localStorage.getItem('spotifyToken');
-  
-  
-      const getToken = async () => {
-        try {
-          const data = new URLSearchParams();
-          data.append('code', spotifyCode);
-          data.append('redirect_uri', `${import.meta.env.VITE_REDIRECT_URI}`);
-          data.append('grant_type', 'authorization_code');
-  
-  
-  
-          if (!tokenSpotify) {
-  
-            const respuesta = await axios.post('https://accounts.spotify.com/api/token', data, {
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': 'Basic ' + btoa(`${import.meta.env.VITE_CLIENT_ID}:${import.meta.env.VITE_CLIENT_SECRET}`)
-              }
-            });
-            setSpotifyToken(respuesta.data.access_token);
-            localStorage.setItem('spotifyToken', respuesta.data.access_token);
-  
-  
-          }
-  
-  
-  
-        } catch (error) {
-          console.log(error);
-        }
-      };
-  
-      getToken();
-  
-  
-  
-      const getTracks = async () => {
-        try {
-  
-          setCargando(true);
-          // Obtenemos las recomendaciones segun los generos que pasamos como parametros
-          const response = await axios.get('https://api.spotify.com/v1/recommendations', {
-            params: {
-              limit: 20,
-              seed_genres: 'pop,rock,reggaeton', // Replace with desired genres
-              min_popularity: 50, // Adjust as needed
-            },
+  const [tracks, setTracks] = useState([]);
+  const [cargando, setCargando] = useState(false);
+  const [playPreview, setPlayPreview] = useState("");
+  const [curretPreview, setCurrentPreview] = useState(null);
+  const [showPlayer, setShowPlayer] = useState(false);
+  const [alerta, setAlerta] = useState({});
+
+
+  const trackRef = useRef(null);
+  const location = useLocation();
+  const { spotifyToken, setSpotifyToken } = useAuth();
+  const [spotifyCode, setSpotifyCode] = useState(location.state.code);
+
+
+  useEffect(() => {
+
+    const tokenSpotify = localStorage.getItem('spotifyToken');
+
+
+    const getToken = async () => {
+      try {
+        const data = new URLSearchParams();
+        data.append('code', spotifyCode);
+        data.append('redirect_uri', `${import.meta.env.VITE_REDIRECT_URI}`);
+        data.append('grant_type', 'authorization_code');
+
+
+
+        if (!tokenSpotify) {
+
+          const respuesta = await axios.post('https://accounts.spotify.com/api/token', data, {
             headers: {
-              Authorization: `Bearer ${spotifyToken}`,
-            },
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': 'Basic ' + btoa(`${import.meta.env.VITE_CLIENT_ID}:${import.meta.env.VITE_CLIENT_SECRET}`)
+            }
           });
-  
-  
-          setTracks(response.data.tracks);
-          setCargando(false);
-  
-        } catch (error) {
-          if (error.response.status === 429) {
-            setAlerta({
-              msg: "Muchas solicitudes realizadas, intente mas tarde",
-              error: true
-            })
-  
-            setCargando(false);
-          }
-  
-  
+          setSpotifyToken(respuesta.data.access_token);
+          localStorage.setItem('spotifyToken', respuesta.data.access_token);
+
+
         }
-  
+
+
+
+      } catch (error) {
+        console.log(error);
       }
-  
-      getTracks();
-  
-  
-  
-  
-    }, [spotifyToken])
-  
-  
-    useEffect(() => {
-  
-      //  Obtenemos el cambio de estado del playpreview desde el componente track, y si se cambio el estado reproducimos la cancion
-      if (playPreview) {
-        trackRef.current.audio.current.src = playPreview
-        trackRef.current.audio.current.play()
-        setShowPlayer(true);
-  
-  
-  
-  
-  
-      } else {
-        // En caso de que se cambio el estado pero a false, este pausa la cancion
-        trackRef.current.audio.current.pause();
-        setShowPlayer(false);
+    };
+
+    getToken();
+
+
+
+    const getTracks = async () => {
+      try {
+
+        setCargando(true);
+        // Obtenemos las recomendaciones segun los generos que pasamos como parametros
+        const response = await axios.get('https://api.spotify.com/v1/recommendations', {
+          params: {
+            limit: 20,
+            seed_genres: 'pop,rock,reggaeton', // Replace with desired genres
+            min_popularity: 50, // Adjust as needed
+          },
+          headers: {
+            Authorization: `Bearer ${spotifyToken}`,
+          },
+        });
+
+
+        setTracks(response.data.tracks);
+        setCargando(false);
+
+      } catch (error) {
+        if (error.response.status === 429) {
+          setAlerta({
+            msg: "Muchas solicitudes realizadas, intente mas tarde",
+            error: true
+          })
+
+          setCargando(false);
+        }
+
+
       }
-  
-    }, [playPreview])
-   */
+
+    }
+
+    getTracks();
+
+
+
+
+  }, [spotifyToken])
+
+
+  useEffect(() => {
+
+    //  Obtenemos el cambio de estado del playpreview desde el componente track, y si se cambio el estado reproducimos la cancion
+    if (playPreview) {
+      trackRef.current.audio.current.src = playPreview
+      trackRef.current.audio.current.play()
+      setShowPlayer(true);
+
+
+
+
+
+    } else {
+      // En caso de que se cambio el estado pero a false, este pausa la cancion
+      trackRef.current.audio.current.pause();
+      setShowPlayer(false);
+    }
+
+  }, [playPreview])
+
 
   return (
     <>
 
-      <h1>Dashboard</h1>
-
-      {/*       <Search />
+      <Search />
       <div className='p-5 text-center'>
         <h1 className='text-emerald-500 uppercase font-bold text-4xl'>Recomendaciones</h1>
       </div>
@@ -180,7 +178,7 @@ const Dashboard = () => {
         // other props here
         />
 
-      </div> */}
+      </div>
 
 
 
