@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
                 return;
             }
 
-            await fetch('http://localhost:3000/usuarios/perfil', {
+            await fetch(`${import.meta.env.VITE_BACKEND_URL}usuarios/perfil`, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`

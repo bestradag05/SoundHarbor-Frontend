@@ -66,7 +66,7 @@ const ActualizarPassword = () => {
       return;
     }
 
-    fetch(`http://localhost:3000/usuarios/recuperar-password/${token}`, {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}usuarios/recuperar-password/${token}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
