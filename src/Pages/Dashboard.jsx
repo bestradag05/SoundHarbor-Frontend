@@ -30,37 +30,37 @@ const Dashboard = () => {
     const tokenSpotify = localStorage.getItem('spotifyToken');
 
 
-    /*    const getToken = async () => {
-         try {
-           const data = new URLSearchParams();
-           data.append('code', spotifyCode);
-           data.append('redirect_uri', `${import.meta.env.VITE_REDIRECT_URI}`);
-           data.append('grant_type', 'authorization_code');
-   
-   
-   
-           if (!tokenSpotify) {
-   
-             const respuesta = await axios.post('https://accounts.spotify.com/api/token', data, {
-               headers: {
-                 'Content-Type': 'application/x-www-form-urlencoded',
-                 'Authorization': 'Basic ' + btoa(`${import.meta.env.VITE_CLIENT_ID}:${import.meta.env.VITE_CLIENT_SECRET}`)
-               }
-             });
-             setSpotifyToken(respuesta.data.access_token);
-             localStorage.setItem('spotifyToken', respuesta.data.access_token);
-   
-   
-           }
-   
-   
-   
-         } catch (error) {
-           console.log(error);
-         }
-       };
-   
-       getToken(); */
+    const getToken = async () => {
+      try {
+        const data = new URLSearchParams();
+        data.append('code', spotifyCode);
+        data.append('redirect_uri', `${import.meta.env.VITE_REDIRECT_URI}`);
+        data.append('grant_type', 'authorization_code');
+
+
+
+        if (!tokenSpotify) {
+
+          const respuesta = await axios.post('https://accounts.spotify.com/api/token', data, {
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': 'Basic ' + btoa(`${import.meta.env.VITE_CLIENT_ID}:${import.meta.env.VITE_CLIENT_SECRET}`)
+            }
+          });
+          setSpotifyToken(respuesta.data.access_token);
+          localStorage.setItem('spotifyToken', respuesta.data.access_token);
+
+
+        }
+
+
+
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getToken();
 
 
 

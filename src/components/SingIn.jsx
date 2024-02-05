@@ -23,8 +23,7 @@ const SingIn = () => {
 
     useEffect(() => {
         if (urlParams.size > 0) {
-            console.log("parametros");
-            navigate('/admin', { state: { code: urlParams.get("code") } });
+            navigate('/admin');
         } else {
             console.log("sin parametros");
         }
