@@ -76,7 +76,7 @@ const SingUp = () => {
 
         try {
             // Registramos nuestro usuario e enviamos un email
-            await axios.post(`${import.meta.env.VITE_BACKEND_URL}/usuarios`, data, {
+            await axios.post(`${import.meta.env.VITE_BACKEND_URL}usuarios`, data, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
