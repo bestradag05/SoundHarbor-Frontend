@@ -56,7 +56,13 @@ const SingIn = () => {
             //Autorizamos spotify 
             //Si se autoriza, este redirecciona hacia el dashboard y ahi se programa el cambio del code por 
             //el token
-            window.location.href = `${import.meta.env.VITE_AUTH_ENDPOINT}?client_id=${import.meta.env.VITE_CLIENT_ID}&redirect_uri=${import.meta.env.VITE_REDIRECT_URI}&response_type=${import.meta.env.VITE_RESPONSE_TYPE}&scope=user-read-private user-read-email streaming user-read-playback-state user-modify-playback-state  playlist-read-private user-library-read`;
+            const authURL = new URL(import.meta.env.VITE_AUTH_ENDPOINT);
+            authURL.searchParams.append('client_id', import.meta.env.VITE_CLIENT_ID);
+            authURL.searchParams.append('redirect_uri', import.meta.env.VITE_REDIRECT_URI);
+            authURL.searchParams.append('response_type', import.meta.env.VITE_RESPONSE_TYPE);
+            authURL.searchParams.append('scope', 'user-read-private user-read-email streaming user-read-playback-state user-modify-playback-state  playlist-read-private user-library-read');
+
+            window.location.href = authURL.toString();
 
         } catch (error) {
             // Si existe un error actualizamos nuestro state 
