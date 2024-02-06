@@ -80,7 +80,7 @@ const SingIn = () => {
                         name='email'
                         className="bg-transparent border-b mt-2 text-white w-full focus:outline-none"
                         value={email}
-                        onChange={e => setEmail(e.target.value)} placeholder="Ingrese email" />
+                        onChange={e => setEmail(e.target.value)} placeholder="correo@correo.com" />
                 </div>
 
                 <div className="mb-5">
@@ -90,7 +90,7 @@ const SingIn = () => {
                         className="bg-transparent border-b mt-2 text-white w-full focus:outline-none"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
-                        placeholder="Ingrese password" />
+                        placeholder="password" />
                 </div>
 
                 <div className="flex items-center gap-10 mt-16">
