@@ -22,8 +22,8 @@ Welcome to the SoundHarbor frontend repository! Here you'll find the necessary s
 4. **Create app Spotify Web API:**
 
     
-Enter Spotify Web API and create a project where it will give you the credentials to use its API.
-For more information visit: https://developer.spotify.com/documentation/web-api
+      Enter Spotify Web API and create a project where it will give you the credentials to use its API.
+      For more information visit: https://developer.spotify.com/documentation/web-api
 
 5. **Create .env file:**
 
