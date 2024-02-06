@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <header className='py-10 '>
-      <div className="container mx-auto flex  flex-col lg:flex-row justify-center md:justify-between items-center">
+      <div className="container mx-auto flex  flex-col lg:flex-row justify-center md:justify-between items-center px-5">
         <h1 className='font-bold text-2xl text-white text-center mb-5 lg:mb-0 '>Encuentra <span className='text-emerald-500'>Musica</span> para tu PlayList</h1>
         <nav className=''>
           <ul className='flex gap-4 text-white text-base lg:text-lg uppercase font-bold'>
