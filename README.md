@@ -27,9 +27,7 @@ Welcome to the SoundHarbor frontend repository! Here you'll find the necessary s
 
 5. **Create .env file:**
 
-     Spotify variables:  (You get this data when creating your app in spotify web api)
-
-   
+     Spotify variables (You get this data when creating your app in spotify web api):  
             VITE_CLIENT_ID= # spotify ClientId   
             VITE_CLIENT_SECRET= # spotify ClienteSecret   
             VITE_REDIRECT_URI= # uri redirect   
